@@ -1,5 +1,4 @@
 #include "game.h"
-#include <unistd.h>
 
 void draw_board(Game& g) {
 	for(int i = 0; i < 9; i++) {
@@ -46,13 +45,13 @@ int main() {
 		}
 
 		/* computer makes a move */
-		std::cout << "Computer plays:\n";
-		sleep(1);
 		int computer_move = g.find_best_move(COMPUTER);
 		if(computer_move >= 0) {
+			std::cout << "Computer plays:\n";
 			g.make_move(COMPUTER, computer_move);
 		} else {
 			/* no move was possible */
+			std::cout << "draw!\n";
 			break;
 		}
 		draw_board(g);
