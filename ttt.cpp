@@ -5,20 +5,20 @@ void draw_board(Game& g) {
 	for(int i = 0; i < 9; i++) {
 		if(i > 0) {
 			if(i % 3 == 0) {
-				std::cout << "\n";
+				std::cout << "\n---+---+---\n";
 			} else {
-				std::cout << " ";
+				std::cout << " |";
 			}
 		}
 		switch(g.board[i]) {
 			case BLANK:
-				std::cout << "_";
+				std::cout << "  ";
 				break;
 			case HUMAN:
-				std::cout << "X";
+				std::cout << " X";
 				break;
 			case COMPUTER:
-				std::cout << "O";
+				std::cout << " O";
 				break;
 		}
 	}
@@ -31,9 +31,9 @@ int main() {
 	int num_moves = 0;
 	while(num_moves < 9) {
 		/* human makes a valid move */
-		int human_move;
-		std::cin >> human_move;
+		int human_move = -1;
 		while(!g.is_valid_move(human_move)) {
+			std::cout << "enter valid move (0-9)\n";
 			std::cin >> human_move;
 		}
 
@@ -62,7 +62,7 @@ int main() {
 			break;
 		}
 
-		num_moves++;
+		num_moves += 2;
 	}
 	std::cout << "game over!\n";
 	return 0;
