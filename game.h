@@ -1,4 +1,3 @@
-#include <iostream>
 
 const int BLANK = 0;
 const int HUMAN = 1;
