@@ -24,7 +24,7 @@ public:
 
 	/* get_minimax_score exhaustively searches game tree to determine the score for the move 
 	made by the player assuming that the opponent plays optimally */
-	int get_minimax_score(int player);
+	int get_minimax_score(int player, int depth);
 
 	/* find_best_move finds the best move for the given player based on the minimax score */
 	int find_best_move(int player);

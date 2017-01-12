@@ -34,16 +34,16 @@ int Game::is_game_won() {
 	return 0;
 }
 
-int Game::get_minimax_score(int player) {
+int Game::get_minimax_score(int player, int depth) {
 	/* check if the game has already been won by a player */
 	int win = is_game_won();
 
 	if(win == player) {
 		/* player won */
-		return MAX_SCORE;
+		return MAX_SCORE - depth;
 	} else if(win == -player) {
 		/* opposing player won */
-		return -MAX_SCORE;
+		return -MAX_SCORE + depth;
 	}
 
 	/* For player, make a move on every possible empty position and play the rest of 
@@ -61,7 +61,7 @@ int Game::get_minimax_score(int player) {
 		board[i] = player;
 
 		/* choose move that minimizes the maximum score move for the opponent */
-		int temp_score = -get_minimax_score(-player);
+		int temp_score = -get_minimax_score(-player, depth + 1);
 		if(temp_score > highest_score) {
 			highest_score = temp_score;
 			best_move = i;
@@ -90,7 +90,7 @@ int Game::find_best_move(int player) {
 		board[i] = player;
 
 		/* calculate score of the move */
-		int score = -get_minimax_score(-player);
+		int score = -get_minimax_score(-player, 0);
 		if(score >= highest_score) {
 			highest_score = score;
 			best_move = i;
